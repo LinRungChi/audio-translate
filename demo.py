@@ -7,7 +7,7 @@ from faster_whisper import WhisperModel
 
 model = WhisperModel("large-v2", device="auto", compute_type="auto")
 
-segments, info = model.transcribe("Tagalog Vocabulary WEEK 14： Opposites 3｜ 365 Days of Learning Tagalog & Filipino [C45gZlzaEAg].m4a")
+segments, info = model.transcribe("VIDEO_ID.m4a")
 
 tagalog_text = ""
 for segment in segments:
