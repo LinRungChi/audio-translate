@@ -23,7 +23,7 @@ model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 
 # Set languages
 src_lang = "tgl_Latn"     # Tagalog
-tgt_lang = "zho_Hant"     # Chinese (Simplified)
+tgt_lang = "zho_Hant"     # Chinese (Traditional)
 
 translator = pipelines.TranslationPipeline(model=model, tokenizer=tokenizer, src_lang=src_lang, tgt_lang=tgt_lang)
 
