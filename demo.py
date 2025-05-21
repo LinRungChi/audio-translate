@@ -9,11 +9,14 @@ model = WhisperModel("large-v2", device="auto", compute_type="auto")
 
 segments, info = model.transcribe("VIDEO_ID.m4a")
 
+times = []
 tagalog_text = ""
 for segment in segments:
     tagalog_text += segment.text + " "
-
-print("Tagalog transcription:", tagalog_text)
+    start_time = segment.start
+    end_time = segment.end
+    times.append((start_time, end_time))
+    # print(f"Start: {start_time:.2f}s, End: {end_time:.2f}s, Text: {segment.text}")
 
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipelines
 
@@ -29,4 +32,9 @@ translator = pipelines.TranslationPipeline(model=model, tokenizer=tokenizer, src
 
 output = translator(tagalog_text)
 translated_text = output[0]['translation_text']
-print("Chinese translation:", translated_text)
+
+# Save the translated text to a file with the timestamp
+with open("translated_text.txt", "w", encoding="utf-8") as f:
+    for start, end in times:
+        f.write(f"[{start:.2f}s - {end:.2f}s] {translated_text}\n")
+print("Translated text saved to translated_text.txt")
