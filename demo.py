@@ -21,7 +21,7 @@ model_name = "facebook/nllb-200-3.3B"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 
-# Set languages
+# Set languages (Languages in FLORES-200)
 src_lang = "tgl_Latn"     # Tagalog
 tgt_lang = "zho_Hant"     # Chinese (Traditional)
 
